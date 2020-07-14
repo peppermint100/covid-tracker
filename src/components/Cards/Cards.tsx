@@ -1,51 +1,65 @@
-import React from 'react'
-import { Grid, CardContent, Typography, Card } from "@material-ui/core";
+import React, { ReactElement } from 'react'
+import styles from "./Cards.module.css"
 import CountUp from "react-countup";
-import styles from "./Cards.module.css";
 import cx from "classnames";
-
 
 interface Props {
     data: any;
 }
 
-const Cards: React.FC<Props> = ({ data }) => {
+export default function Cards({ data }: Props): ReactElement {
     return (
         <div className={styles.container}>
-            <Grid container spacing={3} justify="center">
-                <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.infected)}>
-                    <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Infected</Typography>
-                        <Typography variant="h5">
+            <div className={styles.innerContainer}>
+                <div className={cx(styles.card)}>
+                    <div className={cx(styles.header, styles.infected)}>
+                        감염
+                    </div>
+                    <div className={styles.content}>
+                        <p className={styles.numbers}>
                             {data && data.confirmed.value !== undefined ? <CountUp start={0} end={data.confirmed.value} duration={2} /> : "Loading..."}
-                        </Typography>
-                        {data ? <Typography color="textSecondary">{new Date(data.lastUpdate).toDateString()}</Typography> : "Loading..."}
-                        <Typography variant="body2">Number of active cases of COVID-19</Typography>
-                    </CardContent>
-                </Grid>
-                <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.recovered)}>
-                    <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Recovered</Typography>
-                        <Typography variant="h5">
+                        </p>
+                        <p className={styles.date} >
+                            {data ? <p>{new Date(data.lastUpdate).toDateString()}</p> : "Loading..."}
+                        </p>
+                        <p className={styles.info}>
+                            코로나 감염 인원 수
+                    </p>
+                    </div>
+                </div>
+                <div className={cx(styles.card)}>
+                    <div className={cx(styles.header, styles.recovered)}>
+                        회복
+                    </div>
+                    <div className={styles.content}>
+                        <p className={styles.numbers}>
                             {data && data.recovered.value !== undefined ? <CountUp start={0} end={data.recovered.value} duration={2} /> : "Loading..."}
-                        </Typography>
-                        {data ? <Typography color="textSecondary">{new Date(data.lastUpdate).toString()}</Typography> : "Loading..."}
-                        <Typography variant="body2">Number of recoveries of COVID-19</Typography>
-                    </CardContent>
-                </Grid>
-                <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.deaths)}>
-                    <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Deaths</Typography>
-                        <Typography variant="h5">
-                            {data && data.recovered.value !== undefined ? <CountUp start={0} end={data.deaths.value} duration={2} /> : "Loading..."}
-                        </Typography>
-                        {data ? <Typography color="textSecondary">{new Date(data.lastUpdate).toString()}</Typography> : "Loading..."}
-                        <Typography variant="body2">Number of deaths caused by COVID-19</Typography>
-                    </CardContent>
-                </Grid>
-            </Grid>
+                        </p>
+                        <p className={styles.date} >
+                            {data ? <p>{new Date(data.lastUpdate).toDateString()}</p> : "Loading..."}
+                        </p>
+                        <p className={styles.info}>
+                            코로나 회복 인원 수
+                    </p>
+                    </div>
+                </div>
+                <div className={cx(styles.card)}>
+                    <div className={cx(styles.header, styles.deaths)}>
+                        사망
+                    </div>
+                    <div className={styles.content}>
+                        <p className={styles.numbers}>
+                            {data && data.deaths.value !== undefined ? <CountUp start={0} end={data.deaths.value} duration={2} /> : "Loading..."}
+                        </p>
+                        <p className={styles.date} >
+                            {data ? <p>{new Date(data.lastUpdate).toDateString()}</p> : "Loading..."}
+                        </p>
+                        <p className={styles.info}>
+                            코로나 사망 인원 수
+                    </p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
-
-export default Cards;

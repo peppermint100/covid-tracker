@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { fetchCountryData } from '../../api/index';
 import { FormControl, NativeSelect } from "@material-ui/core";
-
+import styles from "./CountryPicker.module.css"
 
 interface Props {
     handleCountryChange: (value: string) => void;
@@ -18,7 +18,7 @@ const CountryPicker: React.FC<Props> = ({ handleCountryChange }) => {
     return (
         <FormControl >
             <NativeSelect onChange={(e: React.ChangeEvent<HTMLSelectElement>) => { handleCountryChange(e.target.value) }}>
-                <option value="global">Global</option>
+                <option className={styles.option} value="global">Global</option>
                 {countries.length ? (
                     countries.map((country, i) => {
                         return (
@@ -27,7 +27,7 @@ const CountryPicker: React.FC<Props> = ({ handleCountryChange }) => {
                     })
                 ) : null}
             </NativeSelect>
-        </FormControl>
+        </FormControl >
     );
 }
 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Cards, Chart, CountryPicker } from "./components"
+import { Chart, CountryPicker, Cards } from "./components"
 import { fetchData } from "./api";
 import styles from "./App.module.css";
-import img from "./img/img.png";
 
 const App: React.FC = () => {
   const [data, setData] = useState();
@@ -23,8 +22,10 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <img className={styles.img} src={img} alt="logo" />
-      <Cards data={data} /> <CountryPicker handleCountryChange={handleCountryChange} /> <Chart barData={data} country={country} /> </div>
+      <h1 className={styles.header}>코로나 19</h1>
+      <Cards data={data} />
+      <CountryPicker handleCountryChange={handleCountryChange} /> <Chart barData={data} country={country} />
+    </div>
   );
 }
 export default App;

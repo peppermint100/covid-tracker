@@ -42,18 +42,18 @@ const Chart: React.FC<Props> = ({ barData, country }) => {
         barData
             ? (
                 <Bar data={{
-                    labels: ['Infected', 'Recovered', 'Deaths'],
+                    labels: ['감염', '회복', '사망'],
                     datasets: [
                         {
-                            label: 'People',
-                            backgroundColor: ['rgba(255,0,0,0.5', 'rgba(0,255,0,0.5', 'rgba(0,0,255,0.5'],
+                            label: '사람 수',
+                            backgroundColor: ['#e84118', '#44bd32', '#8c7ae6'],
                             data: [barData.confirmed.value, barData.recovered.value, barData.deaths.value]
                         }
                     ]
                 }}
                     options={{
                         legend: { display: false },
-                        title: { display: true, text: `Current state in ${country}` }
+                        title: { display: true, text: `현재 선택된 국가는 ${country}입니다.` }
                     }} />
             ) : null
     )
@@ -67,14 +67,14 @@ const Chart: React.FC<Props> = ({ barData, country }) => {
                         labels: data.map(({ reportDate }) => reportDate), // array of rows
                         datasets: [{
                             data: data.map((data) => data.confirmed), // array of rows that matches with labels
-                            label: 'Infected',
-                            borderColor: '#3333ff', // graph line color
+                            label: '감염',
+                            borderColor: '#e84118', // graph line color
                             fill: true, // fill color filling 
                         }, {
                             data: data.map((data) => data.deaths),
-                            label: 'Deaths',
-                            borderColor: 'red',
-                            backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                            label: '사망',
+                            borderColor: '#8c7ae6',
+                            backgroundColor: '#8c7ae6',
                             fill: true,
                         },
                         ],
