@@ -10,6 +10,6 @@ covid-tracker I build following tutorial with little bit of changes
 
 ### Deploment
 
-https://blissful-nobel-92c2ac.netlify.app
+https://peppercovid.netlify.app/
 
 deployed with netlify
